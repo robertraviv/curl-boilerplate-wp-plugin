@@ -23,6 +23,7 @@ class Shortcode{
                 'shortcodeCss',
                 plugin_dir_url( __FILE__ ) . 'css/frontend-styles.css'
             );
+            // Define the root url and nonce for custom end point
             wp_localize_script( 'search-form-query', 'searchQuery', array(
                 'root_url' => get_site_url(),
                 'nonce' => wp_create_nonce('wp_rest')
@@ -54,17 +55,7 @@ class Shortcode{
                 ));
             }
 
-            function handle_query($data) {
-                //Adding Nonce check
-                // if(!isset($_POST['nonce_query']) || !wp_verify_nonce( $_POST['nonce_query'],'wp_rest')) {
-                //     wp_die( 'Search Failed... Are you cheating?' );
-                //     return;
-                // } else {       
-                //     $q = sanitize_text_field($_POST['search_query']);
-                //     echo($_POST['nonce_query']);
-                //     echo($q);
-                // }
-                
+            function handle_query($data) {    
                 $q = sanitize_text_field($_POST['search_query']);
                 // check if entered query to search
                 if($q) {

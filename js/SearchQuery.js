@@ -2,14 +2,12 @@ jQuery(document).ready(function ($) {
 	$("#search_lexica_btn").on("click", function (event) {
 		$(".loader").show();
 		var search = $("#search_lexica_term").val();
-		//var nonce = $("#_wpnonce").val();
 		var displayResultsClass = $("#query-results");
 		$.ajax({
 			type: "POST",
 			url: searchQuery.root_url + "/wp-json/search-lexica-form/v1/send-query",
 			data: {
 				search_query: search,
-				//nonce_query: searchQuery.nonce,
 			},
 			success: function (images) {
 				displayResultsClass.html("");
