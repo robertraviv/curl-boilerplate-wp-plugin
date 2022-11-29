@@ -23,6 +23,10 @@ class Shortcode{
                 'shortcodeCss',
                 plugin_dir_url( __FILE__ ) . 'css/frontend-styles.css'
             );
+            wp_localize_script( 'search-form-query', 'searchQuery', array(
+                'root_url' => get_site_url(),
+                'nonce' => wp_create_nonce('wp_rest')
+            ));
         
             ob_start();
             ?>   
@@ -30,7 +34,6 @@ class Shortcode{
             <div class="wrap">
                 <h1>Search AI Generated Images from Lexica.Art</h1>
                 <form id="form_lexica" method="POST">
-                    <?php wp_nonce_field('wp_rest'); ?>
                     <input type="text" id="search_lexica_term" placeholder="Search...">
                     <input type="submit" name="search_lexica_btn" id="search_lexica_btn" value="Search API" class="button button-primary">
                 </form>

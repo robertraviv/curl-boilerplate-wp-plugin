@@ -2,14 +2,14 @@ jQuery(document).ready(function ($) {
 	$("#search_lexica_btn").on("click", function (event) {
 		$(".loader").show();
 		var search = $("#search_lexica_term").val();
-		var nonce = $("#_wpnonce").val();
+		//var nonce = $("#_wpnonce").val();
 		var displayResultsClass = $("#query-results");
 		$.ajax({
 			type: "POST",
-			url: "/demo/wp-json/search-lexica-form/v1/send-query",
+			url: searchQuery.root_url + "/wp-json/search-lexica-form/v1/send-query",
 			data: {
 				search_query: search,
-				nonce_query: nonce,
+				//nonce_query: searchQuery.nonce,
 			},
 			success: function (images) {
 				displayResultsClass.html("");
@@ -29,7 +29,8 @@ jQuery(document).ready(function ($) {
 						.join("")}</div>`
 				);
 			},
-			beforeSend: function () {
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("X-WP-Nonce", searchQuery.nonce);
 				if (!search) {
 					$(".loader").hide();
 					return false;
