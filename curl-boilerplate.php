@@ -1,12 +1,12 @@
 <?php
-
-/*
-Plugin Name: cURL Boilerplate
-Description: Boilerplate plugin for interacting with external API using cURL.
-Version: 1.0.0
-Author: Robert R
-Text Domain: curl-boilerplate
-*/
+/**
+ * Plugin Name: cURL Boilerplate
+ * Description: Boilerplate plugin for interacting with external API using cURL.
+ * Version: 1.0.3
+ * Author: Robert R
+ * Text Domain: curl-boilerplate
+ * 
+**/
 
 Namespace CurlBoilerplate;
 

@@ -32,16 +32,16 @@ class Shortcode{
             ob_start();
             ?>   
             <div id="search-shortcode" class="class-shortcode">
-            <div class="wrap">
-                <h1>Search AI Generated Images from Lexica.Art</h1>
-                <form id="form_lexica" method="POST">
-                    <input type="text" id="search_lexica_term" placeholder="Search...">
-                    <input type="submit" name="search_lexica_btn" id="search_lexica_btn" value="Search API" class="button button-primary">
-                </form>
+                <div class="wrap">
+                    <h1>Search AI Generated Images from Lexica.Art</h1>
+                    <form id="form_lexica" method="POST">
+                        <input type="text" id="search_lexica_term" placeholder="Search...">
+                        <input type="submit" name="search_lexica_btn" id="search_lexica_btn" value="Search API" class="button button-primary">
+                    </form>
+                </div>
+                <div class="loader hidden">Loading...</div>
+                <div id="query-results" class="hidden">
             </div>
-            <div class="loader hidden">Loading...</div>
-            </div>
-            <div id="query-results" class="hidden">
 
             <?php 
             $output = ob_get_clean();
