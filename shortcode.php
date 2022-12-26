@@ -16,7 +16,7 @@ class Shortcode{
                 'search-form-query',
                 plugin_dir_url( __FILE__ ) . 'js/SearchQuery.js',
                 array('jquery'),
-                1, // Version
+                '1.0', // Version
                 true // Load in Footer
             );
             wp_enqueue_style(
@@ -25,7 +25,7 @@ class Shortcode{
             );
             // Define the root url and nonce for custom end point
             wp_localize_script( 'search-form-query', 'searchQuery', array(
-                'root_url' => get_site_url(),
+                'root_url' => esc_url_raw(get_site_url()),
                 'nonce' => wp_create_nonce('wp_rest')
             ));
         
@@ -55,7 +55,13 @@ class Shortcode{
                 ));
             }
 
-            function handle_query($data) {    
+            function handle_query($data) {  
+                // nonce verification
+                $nonce = $data->get_header('X-WP-Nonce');
+                if(!wp_verify_nonce($nonce, 'wp_rest')) {
+                    die( __( 'Security check', 'textdomain' ) );
+                }
+
                 $q = sanitize_text_field($_POST['search_query']);
                 // check if entered query to search
                 if($q) {
