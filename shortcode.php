@@ -44,8 +44,7 @@ class Shortcode{
             </div>
 
             <?php 
-            $output = ob_get_clean();
-            return $output;
+            return ob_get_clean();
         }
               
             function register_form_api(){
