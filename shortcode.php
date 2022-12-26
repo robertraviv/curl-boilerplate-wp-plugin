@@ -25,7 +25,7 @@ class Shortcode{
             );
             // Define the root url and nonce for custom end point
             wp_localize_script( 'search-form-query', 'searchQuery', array(
-                'root_url' => esc_url_raw(get_site_url()),
+                'root_url' => get_site_url(),
                 'nonce' => wp_create_nonce('wp_rest')
             ));
         
